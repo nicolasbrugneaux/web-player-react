@@ -11,8 +11,10 @@ npm run serve
 *This is temporary, ideally just dragging the html in your browser would be best.*
 
 todo:
-- improve speed
+- **improve speed**
 - fix the shuffle mode
+- look into the fuzzy search, it doesn't seem quite right yet.
+- a volume slider
 - maybe get rid of this wavesurfer lib does uncesserary stuff
 - things..
 
