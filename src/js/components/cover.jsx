@@ -33,13 +33,13 @@ let styles =
     }
 };
 
-const defaultImg = '/dist/img/default.png';
+const defaultImg = 'dist/img/default.png';
 
 export default class Cover extends React.Component
 {
     render()
     {
-        let src = this.props.current ?
+        let src = this.props.current && this.props.current.picture ?
             this.props.current.picture : defaultImg;
 
         return (
