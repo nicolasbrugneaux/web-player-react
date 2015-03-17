@@ -2,6 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import actions from '../actions/';
 
+const defaultImg = 'dist/img/default.png';
+
 export default class Song extends React.Component
 {
     /* jshint ignore:start */
@@ -34,7 +36,7 @@ export default class Song extends React.Component
                     <span className='overlay'>
                         <i className="fa fa-play"/>
                     </span>
-                    <img src={this.props.song.picture}/>
+                    <img src={this.props.song.picture || defaultImg}/>
                 </div>
                 <div onClick={this._select.bind( this )}>
                     <div className='title'>{this.props.song.title}</div>
