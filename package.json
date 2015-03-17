@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "sh scripts/build.sh",
-    "serve": "serve --compress"
+    "serve": "node_modules/serve/bin/serve --compress"
   },
   "author": "Nicolas Brugneaux <nicolas.brugneaux@gmail.com>",
   "license": "MIT",

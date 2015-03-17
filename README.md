@@ -15,3 +15,12 @@ todo:
 - fix the shuffle mode
 - maybe get rid of this wavesurfer lib does uncesserary stuff
 - things..
+
+
+contrib:
+```sh
+npm install
+npm run build
+npm run serve
+# visit localhost:3000
+```
