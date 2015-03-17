@@ -40,7 +40,7 @@ export default class Song extends React.Component
                     <div className='title'>{this.props.song.title}</div>
                     <div className='artist'>{this.props.song.artist}</div>
                 </div>
-                <span className='remove-track' onClick={this._remove.bind( this )}>x</span>
+                <i className='remove-track fa fa-close' onClick={this._remove.bind( this )} />
             </div>
         );
         /* jshint ignore:end */

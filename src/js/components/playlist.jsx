@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatTime } from '../utils';
+import { formatTime, levenshtein, fuzzyMatch } from '../utils';
 import Songs from '../store/songs';
 import Song from './song.jsx';
 import cx from 'classnames';
@@ -77,6 +77,26 @@ export default class Playlist extends React.Component
         this.setState( { collapsed: !this.state.collapsed } );
     }
 
+    _search()
+    {
+        let query = this.refs.searchTextInput.getDOMNode().value.toLowerCase().trim();
+        let songs = Songs.getAll();
+        if ( query )
+        {
+            songs = fuzzyMatch( songs, query ).sort( ( a, b ) =>
+            {
+                return levenshtein( a.title.toLowerCase(), query ) -
+                    levenshtein( b.title.toLowerCase(), query );
+            } );
+
+            this.setState( { songs } );
+        }
+        else
+        {
+            this.setState( { songs } );
+        }
+    }
+
     render()
     {
         /* jshint ignore:start */
@@ -84,7 +104,7 @@ export default class Playlist extends React.Component
             <div className='playlist'>
                 { this.state.current ?
                     <div className='track-details' title='Show Playlist' onClick={this._showPlaylist.bind( this )}>
-                        { this.state.songs.size > 1 ? <i className='fa fa-sort'/> : null }
+                        <i className='fa fa-sort'/>
                         <p className='track-description'>
                             <b>{this.state.current.title}</b> — {this.state.current.artist}
                         </p>
@@ -97,7 +117,7 @@ export default class Playlist extends React.Component
                             There are no tracks loaded in the player.
                         </p>
                     </div> }
-                { this.state.songs.size > 1 ?
+                { this.state.songs.size > 0 ?
                     <div className={cx({
                         'expand-bar': true,
                         'hidden': this.state.collapsed
@@ -105,7 +125,11 @@ export default class Playlist extends React.Component
                         <form>
                             <label htmlFor='searchBox'>Search</label>
                             <div>
-                                <input className='searchBox' id='searchBox' type='search' name='search'/>
+                                <input
+                                    value={this.props.searchText}
+                                    ref="searchTextInput"
+                                    onChange={this._search.bind( this )}
+                                    className='searchBox' id='searchBox' type='search' name='search'/>
                             </div>
                         </form>
                         <ul className='list'>
