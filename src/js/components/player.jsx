@@ -7,7 +7,6 @@ import DropZone from './dropzone.jsx';
 import Cover from './cover.jsx';
 import Controls from './controls.jsx';
 /* jshint ignore:end */
-import { wavesurfer } from '../wavesurfer';
 
 export default class Player extends React.Component
 {
@@ -31,14 +30,6 @@ export default class Player extends React.Component
 
     componentDidMount()
     {
-        wavesurfer = wavesurfer.getInstance();
-
-        wavesurfer.on( 'ready', () => wavesurfer.play() );
-
-        wavesurfer.on( 'finish', () => actions.next() );
-
-        wavesurfer.on( 'seek', () => Songs.setCurrentTime( wavesurfer.getCurrentTime() ) );
-
         Songs.addChangeListener( this._onChange.bind( this ) );
     }
 
@@ -56,7 +47,6 @@ export default class Player extends React.Component
                 'disabled': this.state.songs.size === 0
             })}>
                 <Cover current={this.state.currentSong} />
-                <div id="wave" className="wave" />
                 <Controls songs={this.state.songs} />
                 <DropZone/>
             </div>

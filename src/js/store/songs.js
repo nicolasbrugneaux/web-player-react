@@ -10,9 +10,8 @@
 
 import constants from '../constants';
 import Dispatcher from '../dispatcher';
-import EventEmitter from 'events';
+import EventEmitter from 'eventemitter3';
 import { List } from 'immutable';
-import { playSong, loadSong, pauseSong, stopSong, getDuration, getCurrentTime } from '../wavesurfer';
 
 let _playlist = new List();
 let _shufflePlayList = new List();
@@ -63,16 +62,9 @@ class Store extends EventEmitter
         return _playing;
     }
 
-    play()
+    play( start )
     {
-        if ( _paused )
-        {
-            playSong();
-        }
-        else
-        {
-            loadSong( ( _shuffle ? _shufflePlayList : _playlist ).get( _current ) );
-        }
+        ( _shuffle ? _shufflePlayList : _playlist ).get( _current ).play( start );
 
         _paused = false;
         _playing = true;
@@ -85,16 +77,25 @@ class Store extends EventEmitter
 
     pause()
     {
+        let playlist = _shuffle ? _shufflePlayList : _playlist;
+
+        if ( !_paused )
+        {
+            playlist.get( _current ).pause();
+        }
+
         _playing = false;
         _paused = true;
-        pauseSong();
     }
 
     stop()
     {
+        let playlist = _shuffle ? _shufflePlayList : _playlist;
+
+        playlist.get( _current ).stop();
+
         _playing = false;
         _paused = false;
-        stopSong();
     }
 
     getShuffleState()
@@ -136,6 +137,8 @@ class Store extends EventEmitter
 
     previous()
     {
+        this.stop();
+
         if ( !_shuffle )
         {
             if ( 0 === _current )
@@ -164,6 +167,8 @@ class Store extends EventEmitter
 
     next()
     {
+        this.stop();
+
         if ( !_shuffle )
         {
             if ( _playlist.size - 1 === _current )
@@ -192,7 +197,7 @@ class Store extends EventEmitter
 
     getCurrentSongLength()
     {
-        return getDuration();
+        return ( _shuffle ? _shufflePlayList : _playlist ).get( _current ).getDuration();
     }
 
     setCurrentTime()
@@ -202,7 +207,7 @@ class Store extends EventEmitter
 
     getCurrentSongTime()
     {
-        return getCurrentTime();
+        return ( _shuffle ? _shufflePlayList : _playlist ).get( _current ).getCurrentTime();
     }
 
     getCurrent()
@@ -242,7 +247,7 @@ class Store extends EventEmitter
         _playlist = _playlist.remove( id );
         if ( shuffle )
         {
-            _shufflePlayList.remove( id )
+            _shufflePlayList.remove( id );
         }
     }
 

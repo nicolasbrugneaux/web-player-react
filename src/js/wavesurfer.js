@@ -34,6 +34,7 @@ export const wavesurfer = ( () =>
 
 export const loadSong = ( song ) =>
 {
+    console.log( song) ;
     readFile( song.audioTrack, () =>
     {
         let _blob = song.audioTrack;

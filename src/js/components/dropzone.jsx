@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import actions from '../actions/';
 import { getID3Data } from '../ID3';
+import Song from '../song.js';
 const forEach = ( arr, cb, thisArg=null ) => [].forEach.call( arr, cb.bind( thisArg ) );
 
 export default class Dropzone extends React.Component
@@ -40,7 +41,7 @@ export default class Dropzone extends React.Component
     _windowDragOver( event )
     {
         event.stopPropagation();
-    	event.preventDefault();
+        event.preventDefault();
 
         this._show();
     }
@@ -53,9 +54,9 @@ export default class Dropzone extends React.Component
             {
                 if ( file.type.match(/audio\/mp3/ ) )
                 {
-                    getID3Data( file, ( song ) =>
+                    getID3Data( file, ( data ) =>
                     {
-                        actions.addSong( song );
+                        actions.addSong( new Song( data ) );
                     } );
                 }
             } );

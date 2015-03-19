@@ -31,14 +31,14 @@ export default class Song extends React.Component
             <div className={cx({
                 active: this.props.active,
                 track: true
-            })}>
-                <div onClick={this._select.bind( this )}>
+            })} onClick={this._select.bind( this )}>
+                <div>
                     <span className='overlay'>
                         <i className="fa fa-play"/>
                     </span>
                     <img src={this.props.song.picture || defaultImg}/>
                 </div>
-                <div onClick={this._select.bind( this )}>
+                <div>
                     <div className='title'>{this.props.song.title}</div>
                     <div className='artist'>{this.props.song.artist}</div>
                 </div>
