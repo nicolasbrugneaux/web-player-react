@@ -5,9 +5,10 @@
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sh scripts/build.sh",
-    "serve": "node_modules/serve/bin/serve --compress",
-    "start": "node_modules/serve/bin/serve --compress"
+    "build": "node_modules/gulp/bin/gulp.js js",
+    "watch": "node_modules/gulp/bin/gulp.js js",
+    "serve": "node_modules/gulp/bin/gulp.js serve",
+    "start": "node_modules/gulp/bin/gulp.js serve"
   },
   "author": "Nicolas Brugneaux <nicolas.brugneaux@gmail.com>",
   "license": "MIT",
