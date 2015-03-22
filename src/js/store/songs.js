@@ -209,6 +209,11 @@ class Store extends EventEmitter
     {
         return ( _shuffle ? _shufflePlayList : _playlist ).get( _current ).getCurrentTime();
     }
+    
+    getPlayedPercents()
+    {
+        return ( _shuffle ? _shufflePlayList : _playlist ).get( _current ).getPlayedPercents();
+    }
 
     getCurrent()
     {
@@ -236,18 +241,18 @@ class Store extends EventEmitter
     add( data )
     {
         _playlist = _playlist.push( data );
-        if ( shuffle )
+        if ( _shuffle )
         {
-            _shufflePlayList.push( data );
+            _shufflePlayList = _shufflePlayList.push( data );
         }
     }
 
     remove( id )
     {
         _playlist = _playlist.remove( id );
-        if ( shuffle )
+        if ( _shuffle )
         {
-            _shufflePlayList.remove( id );
+            _shufflePlayList = _shufflePlayList.remove( id );
         }
     }
 

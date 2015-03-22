@@ -70,10 +70,10 @@ export const levenshtein = ( str_m, str_n ) =>
 
 export const fuzzyMatch = ( list, query ) =>
 {
-    let _query = RegExp( query.replace( / /g, '' ).split('').join('.*?'), 'g' );
+    let _query = RegExp( query.replace( / /g, '' ).split( '' ).join( '.*?' ), 'gi' );
 
     return list.filter( ( song ) =>
     {
-        return _query.test( song.title.toLowerCase() );
+        return _query.test( song.title );
     } );
 };

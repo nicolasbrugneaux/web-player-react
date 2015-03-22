@@ -26,7 +26,7 @@ body, html{
     z-index: 100;
 
     background-color: rgba(11, 133, 161, 0.75);
-    color: #fff;
+    color: #222;
     text-align: center;
     font: bold 36px sans-serif;
     line-height: 90vh;
@@ -45,7 +45,7 @@ body, html{
 
 .webplayer{
     height:100%;
-    background-color: #fff;
+    background-color: #222;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
@@ -95,7 +95,7 @@ body, html{
     position: absolute;
     width: 280px;
     font: 16px sans-serif;
-    color: #fff;
+    color: #222;
     text-align: center;
     top: 50%;
     left: 50%;
@@ -119,7 +119,7 @@ body, html{
 .control-bar{
     display: -webkit-flex;
     display: flex;
-    color: #3D464A;
+    color: #bbb;
     text-align: left;
 
     position: relative;
@@ -141,7 +141,7 @@ body, html{
 .player-control div{
     -webkit-flex: 1;
     flex: 1;
-    background-color: #fff;
+    background-color: #222;
     text-align: center;
     line-height: 60px;
     height: 100%;
@@ -149,20 +149,20 @@ body, html{
 }
 
 .disabled .player-control div{
-    color: #758389;
+    color: #555;
 }
 
 .shuffle-button,
 .repeat-button{
     line-height: 60px;
-    color: #758389;
+    color: #bbb;
     position: relative;
 }
 
 .shuffle-button.active,
 .repeat-button.active{
     line-height: 60px;
-    color: #000;
+    color: #555;
 }
 
 .repeat-button i span{
@@ -196,7 +196,7 @@ body, html{
     display: -webkit-flex;
     display: flex;
     z-index: 20;
-    background-color: #fff;
+    background-color: #222;
     padding: 0 30px 0 40px;
     cursor: pointer;
 
@@ -210,7 +210,7 @@ body, html{
 }
 
 .disabled .track-details{
-    color:#758389;
+    color:#555;
 }
 
 .disabled .track-details > i{
@@ -245,7 +245,7 @@ body, html{
     left:0;
     bottom:0;
     width: 100%;
-    background-color: #fff;
+    background-color: #222;
     color: #222;
     cursor: default;
 
@@ -266,8 +266,9 @@ body, html{
     padding: 18px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.4);
     width:100%;
-    background-color: #fff;
+    background-color: #222;
     z-index: 40;
+    color: #bbb;
 }
 
 
@@ -300,21 +301,16 @@ body, html{
     overflow-x: hidden;
 }
 
-
-.list li:nth-child(even){
-    background-color: #F8F7F9;
-}
-
 .track{
     padding: 18px;
     cursor: pointer;
     overflow: hidden;
-    color: #3D464A;
+    color: #bbb;
     position: relative;
 }
 
 .track.active{
-    background-color: #DBE0E4!important;
+    background-color: #26292C!important;
 }
 
 .track p.title{
@@ -358,7 +354,7 @@ body, html{
 }
 
 .track span i{
-    color: #fff;
+    color: #bbb;
     font-size: 22px;
     line-height: 70px;
     left: 28px;
@@ -372,7 +368,7 @@ body, html{
     font-size: 22px;
     top: 12px;
     right: 18px;
-    color: rgb(121, 121, 121);
+    color: #bbb;
     display: block;
 }
 
@@ -380,6 +376,28 @@ body, html{
     opacity: 1;
 }
 
+/*---------------------------
+        Progress Bar
+---------------------------*/
+
+.disabled .progress {
+    opacity: 0;
+}
+.progress{
+    width: 100%;
+    height: 2px;
+    background: #666;
+}
+
+.progress-indicator{
+    height: 100%;
+    background: rgba(11, 133, 161, 1);
+    -webkit-transition: width 0.2s ease;
+       -moz-transition: width 0.2s ease;
+         -o-transition: width 0.2s ease;
+            transition: width 0.2s ease;
+
+}
 /*---------------------------
         Media queries
 ---------------------------*/

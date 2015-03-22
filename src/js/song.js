@@ -176,34 +176,6 @@ export default class Song extends EventEmitter
         this.lastPlay = audioCtx.currentTime;
         this.buffer = buffer;
         this.createSource( buffer );
-
-        // return new Promise( ( resolve, reject ) =>
-        // {
-        //     let source = this.source = this.offlineCtx.createBufferSource();
-        //     source.buffer = buffer;
-        //     source.connect( this.offlineCtx.destination );
-        //
-        //     this.offlineCtx.oncomplete = ( event ) =>
-        //     {
-        //         let song = this.song = audioCtx.createBufferSource();
-        //         song.buffer = event.renderedBuffer;
-        //
-        //         this.duration = song.buffer.duration;
-        //
-        //         song.connect( audioCtx.destination );
-        //
-        //         song.onended = () => this.emit( 'end' );
-        //         song.start();
-        //         resolve( song );
-        //     };
-        //
-        //     this.offlineCtx.onerror = ( err ) =>
-        //     {
-        //         reject( new Error( 'Rendering failed: ' + err ) );
-        //     };
-        //
-        //     this.offlineCtx.startRendering();
-        // } );
     }
 
     unload()
