@@ -37,12 +37,12 @@ export const levenshtein = ( str_m, str_n ) =>
     // initialize v0 (the previous row of distances)
     // this row is A[0][i]: edit distance for an empty s
     // the distance is just the number of characters to delete from t
-    for ( let i = 0; i < str_m_len + 1; i++ )
+    for ( let i = 0; i < str_n_len + 1; i++ )
     {
         v0[i] = i;
     }
 
-    for ( let i = 0; i < str_n_len; i++)
+    for ( let i = 0; i < str_m_len; i++)
     {
         // calculate v1 (current row distances) from the previous row v0
 
